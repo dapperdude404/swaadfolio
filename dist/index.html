@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbf9f4">
+  <meta name="description" content="Explore eight Indian regional recipes, save favourites and write down your family recipes with Swaadfolio.">
+  <title>Swaadfolio · Indian recipe book</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/dm-serif-text.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="recipes.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header><div class="wrap topbar">
+    <a href="#recipes" class="brand" aria-label="Swaadfolio home"><img src="assets/mark.svg" alt="" width="44" height="44"><span>Swaad<em>folio</em></span></a>
+    <nav aria-label="Cookbook"><a href="#recipes" id="nav-book"><span data-icon="book"></span>Recipe book</a><a href="#saved" id="nav-saved"><span data-icon="bookmark"></span>Saved<span id="saved-count" hidden></span></a></nav>
+    <a href="#add" class="button primary nav-add"><span data-icon="plus"></span>Add recipe</a>
+  </div></header>
+  <main class="wrap" id="main" tabindex="-1">
+    <section id="book-view">
+      <section class="feature" id="feature" aria-labelledby="feature-title">
+        <div class="feature-copy"><div class="overline gold"><i></i>Kitchen pick</div>
+          <h1 id="feature-title" tabindex="-1">Paneer Butter<br> Masala</h1>
+          <p>Soft paneer in a velvety tomato gravy, finished with crushed fenugreek and a swirl of cream.</p>
+          <div class="meta feature-meta"><span><span data-icon="clock"></span>40 min</span><span><span data-icon="serve"></span>Serves 4</span></div>
+          <a href="#recipe/paneer-butter-masala" class="button cream"><span data-icon="book"></span>View recipe</a>
+        </div>
+        <img class="hero-photo" src="assets/paneer-butter-masala.webp" alt="Punjabi-style paneer with tomato gravy" fetchpriority="high" width="1200" height="800">
+      </section>
+      <section class="collection" aria-labelledby="collection-title">
+        <div class="collection-top"><div><div class="overline"><span data-icon="flower"></span><span id="kicker">Regional cookbook</span></div><h2 id="collection-title" tabindex="-1">The Indian collection</h2></div>
+          <form id="search-form" class="search" role="search"><span data-icon="search"></span><label class="sr" for="search">Search by dish, ingredient or region</label><input type="search" id="search" placeholder="Search dishes or ingredients" maxlength="120" autocomplete="off"><button type="button" id="clear" class="clear" aria-label="Clear search" hidden><span data-icon="close"></span></button></form>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="Filter by course"></div>
+        <p id="result-count" aria-live="polite"></p><div class="grid" id="grid"></div><div id="empty" class="empty" hidden></div>
+      </section>
+    </section>
+    <section id="detail" class="subview" hidden></section><section id="editor" class="subview editor" hidden></section>
+    <noscript>Enable JavaScript to search the cookbook and open cooking instructions.</noscript>
+  </main>
+  <footer><div class="wrap foot"><span class="foot-brand">Swaadfolio</span><span>By Aryan Singh Studio <b aria-hidden="true">·</b> <a href="credits.html">Photo credits</a></span></div></footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body></html>
