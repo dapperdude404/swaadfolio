@@ -1,6 +1,6 @@
 # Swaadfolio
 
-A personal recipe book by Aryan Singh Studio. The first edition includes eight Indian dishes from eight states. Search by name, ingredient or region, filter by course, bookmark a favourite, and check ingredients off while cooking. You can also add, edit or delete your own recipes and attach a photo.
+A personal recipe book by Aryan Singh Studio. The collection includes twelve Indian dishes from regional kitchens. Search by name, ingredient or region, filter by course, bookmark a favourite, and check ingredients off while cooking. You can also add, edit or delete your own recipes and attach a photo.
 
 ## Run locally
 
@@ -20,10 +20,14 @@ The complete static app is in `dist/`. All photos and fonts ship with the app. P
 | Tamil Nadu | Tomato Rasam |
 | Kerala | Paal Payasam |
 | Punjab | Paneer Butter Masala |
+| North India | Dal Tadka |
+| Punjab | Chana Masala |
+| North India | Aloo Gobi |
+| North India | Besan Chilla |
 
 These are regional home-style versions. Each entry in `dist/recipes.js` has a stable ID, country code, region, ingredients and steps. Future editions can add country collections without changing the existing IDs or saved bookmarks. The launch catalogue and personal-recipe form currently use India.
 
 ## Checks and credits
 
-Run `node --test tests/catalogue.test.cjs` to verify the launch catalogue, photo files and credit links. Photographs and typeface licences are attributed in [Photo credits](dist/credits.html).
+Run `node --test tests/catalogue.test.cjs` to verify the catalogue, photo files and credit links. Photographs and typeface licences are attributed in [Photo credits](dist/credits.html).
 

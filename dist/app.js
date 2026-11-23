@@ -285,5 +285,5 @@
     readBook(); if(route.page==="book") cards(); else if(route.page==="detail")showDetail();
   });
   applyRoute(true);
-  if(!storageWorks) notify("Browser storage is unavailable. You can still explore all eight recipes.");
+  if(!storageWorks) notify("Browser storage is unavailable. You can still explore the recipes.");
 })();

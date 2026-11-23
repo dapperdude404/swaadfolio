@@ -244,5 +244,136 @@ const SwaadfolioRecipes = [
     "tip": "Crush the fenugreek between your palms just before you add it so its aroma stays in the gravy.",
     "country": "IN"
   }
+,
+  {
+    "id": "dal-tadka",
+    "name": "Dal Tadka",
+    "country": "IN",
+    "region": "North India",
+    "course": "Mains",
+    "minutes": 45,
+    "servings": 4,
+    "difficulty": "Easy",
+    "description": "Soft yellow lentils finished with cumin, garlic and a fragrant sizzling tempering.",
+    "ingredients": [
+      "¾ cup toor dal (split pigeon peas)",
+      "3 cups water, plus more if needed",
+      "¼ tsp turmeric",
+      "¾ tsp salt, or to taste",
+      "1 tbsp ghee or oil",
+      "½ tsp cumin seeds",
+      "3 garlic cloves, thinly sliced",
+      "1 small tomato, chopped",
+      "1 dried red chilli",
+      "¼ tsp red chilli powder",
+      "1 tbsp chopped coriander",
+      "½ lemon, to serve"
+    ],
+    "steps": [
+      "Rinse the dal until the water runs mostly clear. Add it to a saucepan with 3 cups water and turmeric. Bring to a boil and skim off any foam.",
+      "Cover partly and simmer for 30–40 minutes, stirring occasionally, until the lentils are very soft. Add hot water if needed. Mash lightly and stir in the salt.",
+      "Heat the ghee in a small pan over medium heat. Add cumin, garlic and the dried chilli. When the garlic turns golden, add the tomato and cook until soft.",
+      "Turn the heat low, stir in the chilli powder briefly, then pour the tempering over the dal. Simmer for 2 minutes. Serve with coriander and lemon."
+    ],
+    "tip": "The lentils should be soft enough to mash with a spoon. Add hot water to adjust the consistency."
+  },
+  {
+    "id": "chana-masala",
+    "name": "Chana Masala",
+    "country": "IN",
+    "region": "Punjab",
+    "course": "Mains",
+    "minutes": 35,
+    "servings": 3,
+    "difficulty": "Easy",
+    "description": "Chickpeas simmered in a spiced onion and tomato gravy with lemon and coriander.",
+    "ingredients": [
+      "2 cups cooked chickpeas, drained and rinsed",
+      "1 tbsp oil",
+      "1 medium onion, finely chopped",
+      "2 garlic cloves, minced",
+      "1 tsp grated ginger",
+      "2 medium tomatoes, finely chopped",
+      "½ tsp cumin seeds",
+      "1 tsp ground coriander",
+      "½ tsp ground cumin",
+      "¼ tsp turmeric",
+      "½ tsp red chilli powder, to taste",
+      "½ tsp garam masala",
+      "½ tsp salt, or to taste",
+      "¾ cup water",
+      "½ lemon",
+      "2 tbsp chopped coriander"
+    ],
+    "steps": [
+      "Warm the oil in a saucepan over medium heat. Add the cumin seeds and let them sizzle, then add the onion. Cook for 5–7 minutes until golden.",
+      "Add the ginger and garlic and cook for 1 minute. Stir in the tomatoes, ground coriander, cumin, turmeric and chilli powder. Cook for 5–6 minutes until the tomatoes soften.",
+      "Add the cooked chickpeas, water and salt. Cover and simmer for 12–15 minutes. Mash a spoonful of chickpeas against the side to thicken the gravy.",
+      "Stir in the garam masala and simmer for 1 minute. Finish with lemon juice and coriander. Serve with rice or roti."
+    ],
+    "tip": "Canned chickpeas work well. Drain and rinse them before adding them to the pan."
+  },
+  {
+    "id": "aloo-gobi",
+    "name": "Aloo Gobi",
+    "country": "IN",
+    "region": "North India",
+    "course": "Sides",
+    "minutes": 35,
+    "servings": 3,
+    "difficulty": "Easy",
+    "description": "Potato and cauliflower cooked with cumin, ginger and a warm blend of spices.",
+    "ingredients": [
+      "2 medium potatoes, peeled and cut into 2 cm cubes",
+      "1 small cauliflower, cut into small florets",
+      "1½ tbsp oil",
+      "½ tsp cumin seeds",
+      "1 tsp grated ginger",
+      "1 small tomato, chopped",
+      "¼ tsp turmeric",
+      "1 tsp ground coriander",
+      "½ tsp cumin powder",
+      "¼ tsp red chilli powder",
+      "½ tsp salt, or to taste",
+      "¼ cup water, plus more if needed",
+      "2 tbsp chopped coriander"
+    ],
+    "steps": [
+      "Heat the oil in a wide lidded pan over medium heat. Add cumin seeds and let them sizzle, then stir in the ginger for 30 seconds.",
+      "Add the potatoes, tomato, turmeric, ground coriander, cumin powder, chilli powder and salt. Stir for 2 minutes.",
+      "Add the cauliflower and water. Cover and cook on low to medium heat for 15–20 minutes, stirring occasionally and adding a splash of water if the pan dries out.",
+      "When the potato and cauliflower are tender, uncover and cook for 2 minutes to reduce any extra liquid. Finish with coriander and serve."
+    ],
+    "tip": "Cut potatoes evenly so they cook at the same pace as the cauliflower."
+  },
+  {
+    "id": "besan-chilla",
+    "name": "Besan Chilla",
+    "country": "IN",
+    "region": "North India",
+    "course": "Breakfast",
+    "minutes": 25,
+    "servings": 2,
+    "difficulty": "Easy",
+    "description": "Savoury chickpea-flour pancakes with onion, coriander and a touch of cumin.",
+    "ingredients": [
+      "1 cup besan (chickpea flour)",
+      "¾ cup water, plus more as needed",
+      "1 small onion, finely chopped",
+      "1 small tomato, finely chopped",
+      "1 green chilli, finely chopped, optional",
+      "2 tbsp chopped coriander",
+      "½ tsp cumin seeds",
+      "¼ tsp turmeric",
+      "½ tsp salt",
+      "2 tsp oil, for cooking"
+    ],
+    "steps": [
+      "Whisk the besan, cumin, turmeric and salt with ¾ cup water until smooth. Add a little extra water if needed to make a pourable batter.",
+      "Stir in the onion, tomato, chilli and coriander. Rest the batter for 5 minutes.",
+      "Heat a non-stick or well-seasoned pan over medium heat and brush lightly with oil. Pour in a ladleful of batter and gently spread it into a thin round.",
+      "Cook for 2–3 minutes until the top looks set and the underside is golden. Flip and cook the other side for 1–2 minutes. Repeat with the remaining batter and serve hot."
+    ],
+    "tip": "Keep the pan at medium heat so the centre cooks through while the outside turns golden."
+  }
 ];
-
