@@ -1,6 +1,6 @@
 # Swaadfolio
 
-A personal recipe book by Aryan Singh Studio. The collection includes twelve Indian dishes from regional kitchens. Search by name, ingredient or region, filter by course, bookmark a favourite, and check ingredients off while cooking. You can also add, edit or delete your own recipes and attach a photo.
+A personal recipe book by Aryan Singh Studio. The collection includes twelve Indian dishes from regional kitchens. Search by name, ingredient, Hinglish name or region, filter by course, bookmark a favourite, and check ingredients off while cooking. Curated ingredients show Hinglish names and selected ingredient photographs. You can also add, edit or delete your own recipes and attach a photo.
 
 ## Run locally
 

@@ -32,5 +32,23 @@ test("the kitchen pick opens a real recipe and all recipe photos ship with credi
     const bytes = fs.readFileSync(path.join(site, "assets", r.id + ".webp"));
     assert.equal(bytes.toString("ascii", 8, 12), "WEBP");
   }
-  assert.equal((credits.match(/commons\.wikimedia\.org\/wiki\/File:/g) || []).length, recipes.length);
+  assert.ok((credits.match(/commons\.wikimedia\.org\/wiki\/File:/g) || []).length >= recipes.length);
+});
+
+test("ingredient guides match the recipe lists and have valid photos", () => {
+  const guideSource = fs.readFileSync(path.join(site, "ingredient-guide.js"), "utf8");
+  const guide = vm.runInNewContext(guideSource + "\nSwaadfolioIngredientGuide");
+  for (const recipe of recipes) {
+    assert.equal(guide[recipe.id].length, recipe.ingredients.length, recipe.id);
+    for (const item of guide[recipe.id]) {
+      const [name, photo] = item.split("|");
+      assert.ok(name.trim(), recipe.id);
+      if (photo) assert.ok(fs.statSync(path.join(site, "assets", "ingredients", photo + ".jpg")).isFile(), photo);
+    }
+  }
+  assert.deepEqual(
+    Array.from(guide["besan-chilla"], item => item.split("|")[0]),
+    ["Besan", "Paani", "Pyaaz", "Tamatar", "Hari mirch", "Hara dhaniya", "Jeera", "Haldi", "Namak", "Tel"]
+  );
+  assert.ok(guide["besan-chilla"].every(item => item.includes("|")), "Every besan chilla ingredient has a photo");
 });

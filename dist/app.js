@@ -26,6 +26,12 @@
   const favouriteKey = id => prefix + "saved." + id;
   const recipeKey = id => prefix + "recipe." + id;
   const curated = new Map(SwaadfolioRecipes.map(r => [r.id, r]));
+  function ingredientGuide(recipe, index) {
+    const entry = SwaadfolioIngredientGuide[recipe.id]?.[index];
+    if (!entry) return null;
+    const [name, photo] = entry.split("|");
+    return { name, photo };
+  }
   let recipes = [], saved = new Set(), route = {}, toastTimer;
   let storageWorks = true;
   const filters = {
@@ -97,7 +103,8 @@
     const pool = route.view === "saved" ? recipes.filter(r => saved.has(r.id)) : recipes;
     const rows = pool.filter(r => {
       if (f.course !== "All recipes" && f.course !== r.course) return false;
-      const haystack = normal([r.name,r.region,r.course,r.description,...r.ingredients].join(" "));
+      const names = (SwaadfolioIngredientGuide[r.id] || []).map(entry => entry.split("|")[0]);
+      const haystack = normal([r.name,r.region,r.course,r.description,...r.ingredients,...names].join(" "));
       return terms.every(term => haystack.includes(term));
     });
     byId("clear").hidden = !f.query;
@@ -142,9 +149,14 @@
       '</h1><p>' + esc(r.description) + '</p><div class="meta"><span>' + icon("clock") + esc(r.minutes) + ' min</span><span>' +
       icon("serve") + 'Serves ' + esc(r.servings) + '</span>' + level + '</div><div class="actions">' + saveButton(r,false) +
       (curated.has(r.id) ? '' : '<a class="button ghost" href="#edit/' + r.id + '">Edit recipe</a>') +
-      '</div></div></div><div class="columns"><section class="ingredients"><h2>Ingredients</h2><ul>' +
-      r.ingredients.map((s,i) => '<li><label><input type="checkbox" data-ingredient="' + i + '"' +
-        (checked.has(i) ? ' checked' : '') + '><span>' + esc(s) + '</span></label></li>').join("") +
+      '</div></div></div><div class="columns"><section class="ingredients"><h2>Ingredients</h2><p class="measurement-help">tsp = chhota chamach · tbsp = bada chamach</p><ul>' +
+      r.ingredients.map((s,i) => {
+        const guide = ingredientGuide(r, i);
+        const photo = guide?.photo ? '<img class="ingredient-photo" src="assets/ingredients/' + esc(guide.photo) + '.jpg" alt="" loading="lazy">' : "";
+        const name = guide ? '<small class="ingredient-hinglish">' + esc(guide.name) + '</small>' : "";
+        return '<li><label><input type="checkbox" data-ingredient="' + i + '"' +
+          (checked.has(i) ? ' checked' : '') + '>' + photo + '<span class="ingredient-copy"><span class="ingredient-original">' + esc(s) + '</span>' + name + '</span></label></li>';
+      }).join("") +
       '</ul></section><section><h2>Method</h2><ol class="steps">' + r.steps.map(s => "<li><span>" + esc(s) + "</span></li>").join("") +
       '</ol>' + (r.tip ? '<aside class="note"><strong>Kitchen note</strong>' + esc(r.tip) + '</aside>' : "") + '</section></div>';
     document.title = r.name + " · Swaadfolio";
