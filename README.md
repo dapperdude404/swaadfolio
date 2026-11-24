@@ -17,22 +17,33 @@
 
 <img src="dist/assets/paneer-butter-masala.webp" alt="Paneer butter masala served with roti" width="100%">
 
-## Your kitchen, your pace
+## Garam khana, khush dil ❤️
 
-Whether it's your first chilla or a family favourite, Swaadfolio keeps the ingredients and steps easy to follow. The Indian collection currently has **14 home-style recipes** from different regions.
+Picture the sizzle of jeera in a warm pan, the smell of fresh dhaniya, and a meal you made yourself. Whether you're making your first chilla or returning to a family favourite, Swaadfolio is here to help you feel at home in the kitchen.
 
-| 🥄 Find your next dish | 🌿 Recognise ingredients | 👩‍🍳 Cook with confidence |
-| --- | --- | --- |
-| Search dishes, ingredients, Hinglish names or regions. Filter by course. | See English and Hinglish names such as **onion / pyaaz**. Selected ingredients also have photos. | Use **Beginner cooking mode** to move through a recipe one step at a time. Check off ingredients as you go. |
+Our collection brings together **14 home-style Indian recipes**—from a quick breakfast to a comforting plate to share.
 
-### Make it yours
+### 🔎 Aaj kya banayein?
 
-- 🔖 **Save favourites** to come back to later.
-- 📖 **Build your own cookbook** by adding, editing or deleting personal Indian recipes and attaching a photo.
-- 🍽️ **Try smart portions for Besan Chilla:** choose 1–6 servings to adjust its ingredient amounts and the water quantity in its method. Amounts are estimates; cooking times and pan size may change.
-- 📱 **Cook on your phone or computer** with a responsive web layout.
+Search by dish, region, ingredient or Hinglish name. Looking for **pyaaz**, **tamatar** or something for breakfast? Start with what you know and find a recipe that feels right.
 
-> **Your recipes stay on this device.** Personal recipes, photos and bookmarks are stored in the current browser and origin. Clearing browser site data can remove them; they do not currently sync between devices.
+### 🌿 Pehchaano apni ingredients
+
+See familiar Hinglish names alongside English, so *onion* feels like **pyaaz** and *turmeric* feels like **haldi**. Selected ingredients include photographs to help you recognise them.
+
+### 👩‍🍳 Chalo, step by step
+
+Switch on **Beginner cooking mode** and take one instruction at a time. Check off ingredients as you prepare them, take your time, and enjoy the little moments along the way.
+
+### 📖 Apni recipes, apni kahani
+
+Save favourites for another day or add your own Indian recipes with a photo—perhaps a dish that reminds you of home. You can edit or delete your personal recipes whenever you like.
+
+### 🍽️ Chhoti ya badi bhookh?
+
+For **Besan Chilla**, choose 1–6 servings to adjust ingredient amounts and the water in the method. These are estimates: taste and adjust the seasoning, and remember that cooking time and pan size may change. Smart portions are available for this recipe only for now.
+
+> **A note about your cookbook:** Personal recipes, photos and bookmarks stay in the current browser on this device. They don't sync between devices, and clearing site data can remove them.
 
 ## On the menu
 
