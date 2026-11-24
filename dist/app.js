@@ -39,6 +39,11 @@
     saved:{course:"All recipes", query:"", scroll:0}
   };
   const checklists = new Map();
+  const cookState = new Map();
+  let portions = new Map();
+  const chillaAmounts = ["cup besan (chickpea flour)", "cup water, plus more as needed", "small onion, finely chopped", "small tomato, finely chopped", "green chilli, finely chopped, optional", "tbsp chopped coriander", "tsp cumin seeds", "tsp turmeric", "tsp salt", "tsp oil, for cooking"];
+  const chillaNumbers = [1, .75, 1, 1, 1, 2, .5, .25, .5, 2];
+  function scaledChilla(i, servings) { return Number((chillaNumbers[i] * servings / 2).toFixed(3)) + " " + chillaAmounts[i]; }
   const listOfText = a => Array.isArray(a) && a.length > 0 && a.every(v => typeof v === "string" && v.trim());
   function validPersonal(r, id) {
     return r && r.id === id && /^mine-[a-z0-9-]+$/.test(id) && typeof r.name === "string" && r.name.trim()
@@ -143,21 +148,24 @@
     const el = byId("detail"), r = recipes.find(item => item.id === route.id);
     if (!r) { missing(el); return; }
     const checked = checklists.get(r.id) || new Set();
+    const portion = portions.get(r.id) || r.servings;
+    const cooking = cookState.get(r.id);
+    const steps = r.id === "besan-chilla" && portion !== r.servings ? r.steps.map(step => step.replace("¾ cup water", Number((.75 * portion / 2).toFixed(3)) + " cup water")) : r.steps;
     const level = r.difficulty ? '<span>' + icon("level") + esc(r.difficulty) + '</span>' : "";
     el.innerHTML = backLink(route.view) + '<div class="detail-lead"><div class="detail-photo">' + imageFor(r) +
       '</div><div class="detail-intro"><span class="overline">' + esc(r.region) + ' · ' + esc(r.course) + '</span><h1 tabindex="-1">' + esc(r.name) +
       '</h1><p>' + esc(r.description) + '</p><div class="meta"><span>' + icon("clock") + esc(r.minutes) + ' min</span><span>' +
-      icon("serve") + 'Serves ' + esc(r.servings) + '</span>' + level + '</div><div class="actions">' + saveButton(r,false) +
+      icon("serve") + 'Serves ' + esc(portion) + '</span>' + level + '</div><div class="actions">' + saveButton(r,false) +
       (curated.has(r.id) ? '' : '<a class="button ghost" href="#edit/' + r.id + '">Edit recipe</a>') +
-      '</div></div></div><div class="columns"><section class="ingredients"><h2>Ingredients</h2><p class="measurement-help">tsp = chhota chamach · tbsp = bada chamach</p><ul>' +
+      '</div></div></div><div class="cook-tools"><button type="button" class="button primary" data-cook-start>' + (cooking ? 'Close cooking mode' : 'Start beginner cooking mode') + '</button>' + (r.id === 'besan-chilla' ? '<label>Servings <select data-portions aria-label="Choose servings">' + [1,2,3,4,5,6].map(n => '<option value="' + n + '"' + (n === portion ? ' selected' : '') + '>' + n + '</option>').join('') + '</select></label><p>Quantities are estimates. Adjust seasoning to taste; follow the adjusted ingredient list. Cooking time and pan size may change.</p>' : '<p>Smart portions are coming to more recipes. This recipe serves ' + esc(r.servings) + '.</p>') + '</div>' + (cooking ? '<section class="cook-panel" aria-label="Beginner cooking mode"><p>Step ' + (cooking.step + 1) + ' of ' + r.steps.length + '</p><h2>Let’s cook, step by step</h2><p aria-live="polite">' + esc(steps[cooking.step]) + '</p><p>Tip: Read the step first. Low heat means dheemi aanch; simmer means gently bubbling.</p><div class="actions"><button type="button" class="button ghost" data-cook-prev ' + (cooking.step === 0 ? 'disabled' : '') + '>Previous</button><button type="button" class="button primary" data-cook-next ' + (cooking.step === r.steps.length - 1 ? 'disabled' : '') + '>Next step</button></div></section>' : '') + '<div class="columns"><section class="ingredients"><h2>Ingredients</h2><p class="measurement-help">tsp = chhota chamach · tbsp = bada chamach</p><ul>' +
       r.ingredients.map((s,i) => {
         const guide = ingredientGuide(r, i);
         const photo = guide?.photo ? '<img class="ingredient-photo" src="assets/ingredients/' + esc(guide.photo) + '.jpg" alt="" loading="lazy">' : "";
         const name = guide ? '<small class="ingredient-hinglish">' + esc(guide.name) + '</small>' : "";
         return '<li><label><input type="checkbox" data-ingredient="' + i + '"' +
-          (checked.has(i) ? ' checked' : '') + '>' + photo + '<span class="ingredient-copy"><span class="ingredient-original">' + esc(s) + '</span>' + name + '</span></label></li>';
+          (checked.has(i) ? ' checked' : '') + '>' + photo + '<span class="ingredient-copy"><span class="ingredient-original">' + esc(r.id === 'besan-chilla' && portion !== r.servings ? scaledChilla(i, portion) : s) + '</span>' + name + '</span></label></li>';
       }).join("") +
-      '</ul></section><section><h2>Method</h2><ol class="steps">' + r.steps.map(s => "<li><span>" + esc(s) + "</span></li>").join("") +
+      '</ul></section><section><h2>Method</h2><ol class="steps">' + steps.map(s => "<li><span>" + esc(s) + "</span></li>").join("") +
       '</ol>' + (r.tip ? '<aside class="note"><strong>Kitchen note</strong>' + esc(r.tip) + '</aside>' : "") + '</section></div>';
     document.title = r.name + " · Swaadfolio";
   }
@@ -259,7 +267,13 @@
   document.addEventListener("click", event => {
     const b = event.target.closest("button");
     if (!b) return;
-    if (b.hasAttribute("data-save")) {
+    if (b.hasAttribute("data-cook-start") || b.hasAttribute("data-cook-prev") || b.hasAttribute("data-cook-next")) {
+      const state = cookState.get(route.id);
+      if (b.hasAttribute("data-cook-start")) { if (state) cookState.delete(route.id); else cookState.set(route.id, {step:0}); }
+      else if (state) state.step += b.hasAttribute("data-cook-next") ? 1 : -1;
+      const selector = b.hasAttribute("data-cook-start") ? "[data-cook-start]" : b.hasAttribute("data-cook-next") ? "[data-cook-next]" : "[data-cook-prev]";
+      showDetail(); const target = byId("detail").querySelector(selector); (target && !target.disabled ? target : byId("detail").querySelector("[data-cook-start]")).focus({preventScroll:true});
+    } else if (b.hasAttribute("data-save")) {
       const id = b.dataset.save;
       try {
         const key = favouriteKey(id);
@@ -285,6 +299,7 @@
   byId("editor").addEventListener("input",e=>{if(typeof e.target.setCustomValidity==="function")e.target.setCustomValidity("");});
   byId("editor").addEventListener("submit", e=>{if(e.target.id==="recipe-form"){e.preventDefault();storeForm(e.target);}});
   byId("detail").addEventListener("change", e=>{
+    if(e.target.hasAttribute("data-portions")) { portions.set(route.id, Number(e.target.value)); showDetail(); byId("detail").querySelector("[data-portions]").focus({preventScroll:true}); return; }
     if(!e.target.hasAttribute("data-ingredient"))return;
     const checks=checklists.get(route.id)||new Set(), i=Number(e.target.dataset.ingredient);
     if(e.target.checked)checks.add(i);else checks.delete(i);
