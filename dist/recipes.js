@@ -243,8 +243,7 @@ const SwaadfolioRecipes = [
     ],
     "tip": "Crush the fenugreek between your palms just before you add it so its aroma stays in the gravy.",
     "country": "IN"
-  }
-,
+  },
   {
     "id": "dal-tadka",
     "name": "Dal Tadka",
@@ -375,5 +374,64 @@ const SwaadfolioRecipes = [
       "Cook for 2–3 minutes until the top looks set and the underside is golden. Flip and cook the other side for 1–2 minutes. Repeat with the remaining batter and serve hot."
     ],
     "tip": "Keep the pan at medium heat so the centre cooks through while the outside turns golden."
+  },
+  {
+    "id": "jeera-aloo",
+    "name": "Jeera Aloo",
+    "country": "IN",
+    "region": "North India",
+    "course": "Sides",
+    "minutes": 35,
+    "servings": 3,
+    "difficulty": "Easy",
+    "description": "Tender potatoes tossed with toasted cumin, ginger and fresh coriander.",
+    "ingredients": [
+      "500 g potatoes, peeled and cut into 2 cm cubes",
+      "Water to cover potatoes by 2 cm",
+      "1½ tbsp oil",
+      "1½ tsp cumin seeds",
+      "1 tsp grated ginger",
+      "1 green chilli, finely chopped (optional)",
+      "¼ tsp turmeric",
+      "½ tsp salt, then adjust to taste",
+      "2 tsp lemon juice",
+      "2 tbsp chopped coriander"
+    ],
+    "steps": [
+      "Put potatoes in a saucepan and cover with water. Bring to a boil, then simmer for 10–15 minutes until a fork slides into a cube easily. Drain and let the steam escape for 3 minutes.",
+      "Warm oil over medium heat. Add cumin; let it sizzle and smell fragrant without turning black. Stir in ginger and chilli for 30 seconds.",
+      "Lower the heat. Add turmeric, salt and drained potatoes. Gently turn with a spatula for 4–5 minutes, coating the cubes without mashing them.",
+      "Switch off the heat. Add lemon juice and coriander. Taste and adjust salt; serve with roti or dal-rice."
+    ],
+    "tip": "Aloo naram ho, lekin toote nahi: potatoes should be fork-tender but hold their shape. Total time includes boiling."
+  },
+  {
+    "id": "tomato-chutney",
+    "name": "Tomato Chutney",
+    "country": "IN",
+    "region": "Indian home-style",
+    "course": "Sides",
+    "minutes": 25,
+    "servings": 4,
+    "difficulty": "Easy",
+    "description": "A chunky, tangy tamatar chutney with cumin and ginger, made in one pan.",
+    "ingredients": [
+      "500 g ripe tomatoes, finely chopped",
+      "1 tbsp oil",
+      "½ tsp cumin seeds",
+      "1 tsp grated ginger",
+      "1 green chilli, finely chopped (optional)",
+      "¼ tsp turmeric",
+      "½ tsp salt, then adjust to taste",
+      "2 tbsp water, only if the pan dries out",
+      "1 tbsp chopped coriander"
+    ],
+    "steps": [
+      "Wash and chop the tomatoes. Warm oil in a saucepan over medium heat. Add cumin and stir until fragrant, about 20 seconds.",
+      "Add ginger and optional chilli; stir for 30 seconds. Add tomatoes, turmeric and salt, then mix well.",
+      "Cover partly and cook over medium-low heat for 10–12 minutes, stirring often. If it starts sticking, add a little water. Press softened tomato pieces with the back of a spoon.",
+      "Uncover and stir for 3–5 minutes until thick enough to sit on a spoon. Switch off the heat and add coriander. Serve warm with roti, chilla or rice."
+    ],
+    "tip": "Dheemi aanch = low heat. This is a simple savoury home-style version; tomatoes should become soft and pulpy. Serves four as a condiment."
   }
 ];
