@@ -27,7 +27,7 @@ Recipe credits, ingredient accessibility, regional naming, search, favorites and
 
 ## Limitations to retain in public promotion
 
-12 curated Indian dishes; personal data is stored in local browser storage and may disappear if site data is cleared.
+14 curated Indian dishes; personal data is stored in local browser storage and may disappear if site data is cleared.
 
 ## Quick onboarding
 
