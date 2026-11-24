@@ -143,3 +143,5 @@ footer a,.back,.credits a{color:var(--rust);text-decoration:underline;text-under
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
 .cook-tools,.cook-panel{margin:1.5rem 0;padding:1.25rem;border:1px solid #ded5c8;border-radius:14px;background:#fffdf8}.cook-tools label{display:inline-flex;align-items:center;gap:.6rem;margin-left:1rem}.cook-tools select{font:inherit;padding:.4rem;border:1px solid #aaa;border-radius:6px}.cook-tools p,.cook-panel p{line-height:1.6}.cook-panel .actions{display:flex;gap:.75rem;flex-wrap:wrap}.cook-panel button:disabled{opacity:.5}
+
+.language-bar{padding-top:1rem;padding-bottom:.25rem}.language-bar label{display:flex;gap:.75rem;align-items:center;font-weight:600;flex-wrap:wrap}.language-bar select{font:inherit;min-height:44px;max-width:100%;padding:.5rem 2rem .5rem .75rem;border:1px solid #b7aa98;border-radius:8px;background:#fffdf8}.language-bar p{font-size:.9rem;line-height:1.5;color:#5b544b;margin:.5rem 0}.language-bar:focus-within{outline-offset:4px}

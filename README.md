@@ -9,7 +9,7 @@
 
 [Explore the recipe book](https://swaadfolio.leafyhutch64.chatgpt.site) · [See the dishes](#on-the-menu) · [Run it locally](#get-started) · [Contribute](CONTRIBUTING.md)
 
-<sub>Created by Aryan Singh Studio · The hosted preview is private and requires the owner's ChatGPT sign-in.</sub>
+<sub>Created by Aryan Singh Studio · The website is public—open it and start cooking.</sub>
 
 </div>
 
@@ -34,6 +34,10 @@ See familiar Hinglish names alongside English, so *onion* feels like **pyaaz** a
 ### 👩‍🍳 Chalo, step by step
 
 Switch on **Beginner cooking mode** and take one instruction at a time. Check off ingredients as you prepare them, take your time, and enjoy the little moments along the way.
+
+### 🌍 Apni bhasha mein
+
+Choose **Hinglish** for the methods and kitchen notes in all 14 curated recipes, including Beginner cooking mode. English is also available. Spanish and French are **starter interface packs** for navigation and cooking controls; their recipe text and forms remain in English. Ingredient quantities and some screens remain English in Hinglish mode too. Your language preference stays in this browser. See [language coverage](docs/languages.md).
 
 ### 📖 Apni recipes, apni kahani
 
@@ -64,7 +68,7 @@ These recipes are home-style versions. Ingredient photo coverage and portion sca
 
 ## Get started
 
-The hosted link above is owner-private. To explore your own copy, run this static app locally:
+Open the public recipe book using the link above. To run your own copy locally:
 
 ```bash
 git clone https://github.com/dapperdude404/swaadfolio.git
@@ -85,7 +89,7 @@ Want to help? Read the [contribution guide](CONTRIBUTING.md), [report a bug](htt
 Run the catalogue checks with:
 
 ```bash
-node --test tests/catalogue.test.cjs
+node --test tests/*.test.cjs
 ```
 
 Food and ingredient photographs and typeface licences are credited in [Photo credits](dist/credits.html). Built with HTML, CSS and JavaScript.
@@ -96,3 +100,4 @@ Food and ingredient photographs and typeface licences are credited in [Photo cre
 *Har recipe, ek nayi kahani.*
 
 </div>
+

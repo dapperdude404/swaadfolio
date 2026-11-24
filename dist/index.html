@@ -8,7 +8,7 @@
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="preload" href="assets/dm-serif-text.woff" as="font" type="font/woff" crossorigin>
   <link rel="stylesheet" href="styles.css">
-  <script defer src="recipes.js"></script><script defer src="ingredient-guide.js"></script><script defer src="app.js"></script>
+  <script defer src="recipes.js"></script><script defer src="ingredient-guide.js"></script><script defer src="locales/hinglish.js"></script><script defer src="locales/ui.js"></script><script defer src="language.js"></script><script defer src="app.js"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -17,6 +17,7 @@
     <nav aria-label="Cookbook"><a href="#recipes" id="nav-book"><span data-icon="book"></span>Recipe book</a><a href="#saved" id="nav-saved"><span data-icon="bookmark"></span>Saved<span id="saved-count" hidden></span></a></nav>
     <a href="#add" class="button primary nav-add"><span data-icon="plus"></span>Add recipe</a>
   </div></header>
+  <div class="wrap language-bar"><label for="language" data-no-translate>Language / Bhasha <select id="language" aria-label="Language / Bhasha"><option value="en">English</option><option value="hi-Latn">Hinglish</option><option value="es">Español · interfaz</option><option value="fr">Français · interface</option></select></label><p id="language-notice" data-no-translate role="status"></p></div>
   <main class="wrap" id="main" tabindex="-1">
     <section id="book-view">
       <section class="feature" id="feature" aria-labelledby="feature-title">

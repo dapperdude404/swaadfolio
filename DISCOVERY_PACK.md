@@ -7,7 +7,7 @@ This is a **documentation-only metadata proposal**. This file does not modify th
 **Description:**
 > Indian recipe book web app with regional dishes, Hinglish ingredients, favorites and local-first editing.
 
-**Website:** Leave blank until a working, verified public demo is available.
+**Website:** https://swaadfolio.leafyhutch64.chatgpt.site (public recipe book).
 
 **Topics (comma-separated for copying):**
 `indian-food, recipes, javascript, cooking, local-storage, web-app, beginner-friendly`

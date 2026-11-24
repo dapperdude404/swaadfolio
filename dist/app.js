@@ -99,7 +99,7 @@
     const isSaved = saved.has(r.id);
     const text = isSaved ? "Remove from saved recipes" : "Save recipe";
     return '<button type="button" class="' + (compact ? "bookmark" : "button ghost") + '" data-save="' + esc(r.id) +
-      '" aria-pressed="' + isSaved + '" aria-label="' + esc(text + " · " + r.name) + '" title="' + text + '">' +
+      '" aria-pressed="' + isSaved + '" data-language-label="' + text + '" data-recipe-name="' + esc(r.name) + '" aria-label="' + esc(text + " · " + r.name) + '" title="' + text + '">' +
       icon("bookmark") + (compact ? "" : (isSaved ? "Saved" : "Save recipe")) + '</button>';
   }
   function normal(s) { return String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim(); }
@@ -127,6 +127,7 @@
         "</h3><p>" + (firstSave ? "Tap the bookmark on a recipe to keep it here." : "Try another ingredient or choose a different course.") + "</p>" +
         (firstSave ? '<a class="button ghost" href="#recipes">Explore recipes</a>' : '<button class="button ghost" data-reset>Clear filters</button>');
     }
+    SwaadfolioLanguage.apply();
   }
   function showBook() {
     const f = filters[route.view], isSaved = route.view === "saved";
@@ -137,6 +138,7 @@
     byId("filters").innerHTML = Object.entries(courses).map(([c,i]) => '<button type="button" class="filter" data-course="' + c +
       '" aria-pressed="' + (f.course === c) + '">' + icon(i) + c + '</button>').join("");
     cards();
+    SwaadfolioLanguage.apply();
     document.title = (isSaved ? "Saved recipes" : "Indian recipe book") + " · Swaadfolio";
   }
   function backLink(view) { return '<a class="back" href="#' + view + '">' + icon("book") + (view === "saved" ? "Back to saved recipes" : "Back to recipe book") + '</a>'; }
@@ -150,14 +152,15 @@
     const checked = checklists.get(r.id) || new Set();
     const portion = portions.get(r.id) || r.servings;
     const cooking = cookState.get(r.id);
-    const steps = r.id === "besan-chilla" && portion !== r.servings ? r.steps.map(step => step.replace("¾ cup water", Number((.75 * portion / 2).toFixed(3)) + " cup water")) : r.steps;
+    const translated = SwaadfolioLanguage.recipe(r, portion);
+    const steps = translated.steps;
     const level = r.difficulty ? '<span>' + icon("level") + esc(r.difficulty) + '</span>' : "";
     el.innerHTML = backLink(route.view) + '<div class="detail-lead"><div class="detail-photo">' + imageFor(r) +
       '</div><div class="detail-intro"><span class="overline">' + esc(r.region) + ' · ' + esc(r.course) + '</span><h1 tabindex="-1">' + esc(r.name) +
       '</h1><p>' + esc(r.description) + '</p><div class="meta"><span>' + icon("clock") + esc(r.minutes) + ' min</span><span>' +
       icon("serve") + 'Serves ' + esc(portion) + '</span>' + level + '</div><div class="actions">' + saveButton(r,false) +
       (curated.has(r.id) ? '' : '<a class="button ghost" href="#edit/' + r.id + '">Edit recipe</a>') +
-      '</div></div></div><div class="cook-tools"><button type="button" class="button primary" data-cook-start>' + (cooking ? 'Close cooking mode' : 'Start beginner cooking mode') + '</button>' + (r.id === 'besan-chilla' ? '<label>Servings <select data-portions aria-label="Choose servings">' + [1,2,3,4,5,6].map(n => '<option value="' + n + '"' + (n === portion ? ' selected' : '') + '>' + n + '</option>').join('') + '</select></label><p>Quantities are estimates. Adjust seasoning to taste; follow the adjusted ingredient list. Cooking time and pan size may change.</p>' : '<p>Smart portions are coming to more recipes. This recipe serves ' + esc(r.servings) + '.</p>') + '</div>' + (cooking ? '<section class="cook-panel" aria-label="Beginner cooking mode"><p>Step ' + (cooking.step + 1) + ' of ' + r.steps.length + '</p><h2>Let’s cook, step by step</h2><p aria-live="polite">' + esc(steps[cooking.step]) + '</p><p>Tip: Read the step first. Low heat means dheemi aanch; simmer means gently bubbling.</p><div class="actions"><button type="button" class="button ghost" data-cook-prev ' + (cooking.step === 0 ? 'disabled' : '') + '>Previous</button><button type="button" class="button primary" data-cook-next ' + (cooking.step === r.steps.length - 1 ? 'disabled' : '') + '>Next step</button></div></section>' : '') + '<div class="columns"><section class="ingredients"><h2>Ingredients</h2><p class="measurement-help">tsp = chhota chamach · tbsp = bada chamach</p><ul>' +
+      '</div></div></div><div class="cook-tools"><button type="button" class="button primary" data-cook-start>' + (cooking ? 'Close cooking mode' : 'Start beginner cooking mode') + '</button>' + (r.id === 'besan-chilla' ? '<label>Servings <select data-portions aria-label="Choose servings">' + [1,2,3,4,5,6].map(n => '<option value="' + n + '"' + (n === portion ? ' selected' : '') + '>' + n + '</option>').join('') + '</select></label><p>Quantities are estimates. Adjust seasoning to taste; follow the adjusted ingredient list. Cooking time and pan size may change.</p>' : '<p>Smart portions are coming to more recipes. This recipe serves ' + esc(r.servings) + '.</p>') + '</div>' + (cooking ? '<section class="cook-panel" aria-label="Beginner cooking mode"><p>Step ' + (cooking.step + 1) + ' of ' + r.steps.length + '</p><h2>Let’s cook, step by step</h2><p data-no-translate lang="' + translated.lang + '" aria-live="polite">' + esc(steps[cooking.step]) + '</p><p>Tip: Read the step first. Low heat means dheemi aanch; simmer means gently bubbling.</p><div class="actions"><button type="button" class="button ghost" data-cook-prev ' + (cooking.step === 0 ? 'disabled' : '') + '>Previous</button><button type="button" class="button primary" data-cook-next ' + (cooking.step === r.steps.length - 1 ? 'disabled' : '') + '>Next step</button></div></section>' : '') + '<div class="columns"><section class="ingredients"><h2>Ingredients</h2><p class="measurement-help">tsp = chhota chamach · tbsp = bada chamach</p><ul>' +
       r.ingredients.map((s,i) => {
         const guide = ingredientGuide(r, i);
         const photo = guide?.photo ? '<img class="ingredient-photo" src="assets/ingredients/' + esc(guide.photo) + '.jpg" alt="" loading="lazy">' : "";
@@ -165,9 +168,10 @@
         return '<li><label><input type="checkbox" data-ingredient="' + i + '"' +
           (checked.has(i) ? ' checked' : '') + '>' + photo + '<span class="ingredient-copy"><span class="ingredient-original">' + esc(r.id === 'besan-chilla' && portion !== r.servings ? scaledChilla(i, portion) : s) + '</span>' + name + '</span></label></li>';
       }).join("") +
-      '</ul></section><section><h2>Method</h2><ol class="steps">' + steps.map(s => "<li><span>" + esc(s) + "</span></li>").join("") +
-      '</ol>' + (r.tip ? '<aside class="note"><strong>Kitchen note</strong>' + esc(r.tip) + '</aside>' : "") + '</section></div>';
+      '</ul></section><section><h2>Method</h2><ol class="steps" lang="' + translated.lang + '">' + steps.map(s => "<li><span>" + esc(s) + "</span></li>").join("") +
+      '</ol>' + (r.tip ? '<aside class="note" lang="' + translated.lang + '"><strong data-note-label>Kitchen note</strong>' + esc(translated.tip) + '</aside>' : "") + '</section></div>';
     document.title = r.name + " · Swaadfolio";
+    SwaadfolioLanguage.apply();
   }
   function formField(label,name,value,options={}) {
     const required = options.optional ? "" : " required";
@@ -258,6 +262,7 @@
       if(route.view===name && route.page!=="editor") byId(id).setAttribute("aria-current","page"); else byId(id).removeAttribute("aria-current");
     }
     if (route.page==="book") showBook(); else if (route.page==="detail") showDetail(); else showEditor();
+    SwaadfolioLanguage.apply();
     if (!initial) {
       const title = route.page==="book" ? byId(route.view==="saved" ? "collection-title":"feature-title") : document.querySelector(".subview:not([hidden]) h1");
       title?.focus({preventScroll:true});
@@ -311,6 +316,12 @@
     if(e.key && !e.key.startsWith(prefix))return;
     readBook(); if(route.page==="book") cards(); else if(route.page==="detail")showDetail();
   });
+  byId("language").addEventListener("change", e => {
+    SwaadfolioLanguage.set(e.target.value);
+    if (route.page === "detail") showDetail();
+    SwaadfolioLanguage.apply();
+  });
   applyRoute(true);
+  SwaadfolioLanguage.apply();
   if(!storageWorks) notify("Browser storage is unavailable. You can still explore the recipes.");
 })();
