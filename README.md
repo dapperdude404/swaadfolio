@@ -89,7 +89,8 @@ Want to help? Read the [contribution guide](CONTRIBUTING.md), [report a bug](htt
 Run the catalogue checks with:
 
 ```bash
-node --test tests/*.test.cjs
+npm ci --ignore-scripts
+npm test
 ```
 
 Food and ingredient photographs and typeface licences are credited in [Photo credits](dist/credits.html). Built with HTML, CSS and JavaScript.
@@ -101,3 +102,9 @@ Food and ingredient photographs and typeface licences are credited in [Photo cre
 
 </div>
 
+
+## Android preview
+
+An Android preview is available in [`android/`](android/README.md). It bundles the same web recipe book, including language packs and Beginner cooking mode. Its local data is separate from your browser's data. See the Android README for build instructions, storage limitations and device acceptance checks. This is not a Play Store release.
+
+For the full checks, install development dependencies with `npm ci --ignore-scripts`, then run `npm test`.

@@ -1,0 +1,25 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.dapperdude404.swaadfolio'
+    compileSdk 35
+    buildFeatures { buildConfig true }
+    defaultConfig {
+        applicationId 'com.dapperdude404.swaadfolio'
+        minSdk 26
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0'
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+    sourceSets.main.assets.srcDir layout.buildDirectory.dir('generated/recipeAssets')
+}
+// One source of truth: include the exact current web catalogue, photos and language packs.
+tasks.register('syncRecipeAssets', Sync) {
+    from rootProject.file('../dist')
+    into layout.buildDirectory.dir('generated/recipeAssets/www')
+}
+tasks.named('preBuild').configure { dependsOn 'syncRecipeAssets' }
+dependencies {
+    implementation 'androidx.webkit:webkit:1.12.1'
+    testImplementation 'junit:junit:4.13.2'
+}
